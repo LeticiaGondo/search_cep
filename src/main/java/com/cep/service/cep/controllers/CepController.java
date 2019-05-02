@@ -1,11 +1,13 @@
 package com.cep.service.cep.controllers;
 
 import com.cep.service.cep.models.Cep;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.Path;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import java.util.HashMap;
@@ -70,5 +72,19 @@ public class CepController {
 
         return map;
     }
+
+    @GetMapping ("/getIBGEByCep/{cep}")
+    public Map<String, String> getIBGEByCep(@PathVariable (value = "cep") String cepAdress){
+        String url = "https://viacep.com.br/ws/"+cepAdress+"/json/";
+        Client client = ClientBuilder.newClient();
+        Cep cep = client.target(url).request().get(Cep.class);
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("ibge", Integer.toString(cep.getIbge()));
+
+        return map;
+
+    }
+
 
 }
