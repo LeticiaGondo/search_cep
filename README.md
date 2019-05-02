@@ -19,4 +19,4 @@ $ docker-composer up
 | Nome da cidade | http://localhost:8080/api/getCityByCep/09841510 |
 | Nome do bairro | http://localhost:8080/api/getDistrictByCep/09841510 |
 | Nome do Estado | http://localhost:8080/api/getStateByCep/09841510 |
-
+| Número de IBGE | http://localhost:8080/api/getIBGEByCep/09841510 |
